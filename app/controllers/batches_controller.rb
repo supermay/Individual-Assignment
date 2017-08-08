@@ -1,9 +1,13 @@
 class BatchesController < ApplicationController
   before_action :authenticate_user!
 
-  def show
+  def index
     @batches = current_user.batches
     @batch = Batch.new
+  end
+
+  def show
+    @batch = Batch.find(params[:id])
   end
 
   def create
@@ -12,7 +16,7 @@ class BatchesController < ApplicationController
       redirect_to root_path, notice: "New batch created!"
     else
       redirect_to root_path, notice: "You need to fill in all information!"
-    end 
+    end
   end
 
   private
