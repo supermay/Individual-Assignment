@@ -1,11 +1,15 @@
+<!-- use map to see the color -->
+<h4><%= @latest_results.map{ |result| result.color} %>
+</h4>
 <% @students.each do |student| %>
   <h3>
     <%= link_to student.first_name + ' ' +student.last_name, batch_student_path(student.batch_id,student.id) %>
     <%= link_to "[Edit]", edit_batch_student_path(@batch.id,student.id) %>
     <%= link_to "[Delete]", batch_student_path(@batch.id,student.id), method: :delete, data: { confirm: "Are you sure?" } %>
-  <h3>
-    <% if student.evaluations.length > 0 %>
-      <%= student.evaluations.last.color %>
-    <% end %>
-    <!-- <%= image_tag student.picture %> -->
+  </h3>
+  <% if student.evaluations.get_latest_result(student.id) != [] %>
+    <%= student.evaluations.get_latest_result(student.id).color %>
+  <% else %>
+    <h4>No Evaluation At All, You stupid asshole!!!</h4>
+  <% end %>
 <% end %>

@@ -9,6 +9,10 @@ class BatchesController < ApplicationController
   def show
     @batch = Batch.find(params[:id])
     @students = @batch.students
+    # get this idea from rails console
+    @students_ids = @students.ids
+    # removed @evaluations = Evaluation.all
+    @latest_results = Evaluation.all.get_latest_results_for_batch(@students_ids)
   end
 
   def create
