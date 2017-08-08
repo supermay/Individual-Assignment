@@ -10,6 +10,12 @@ class StudentsController < ApplicationController
     end
   end
 
+  def destroy
+    @student = Student.find(params[:id])
+    @student.destroy
+    redirect_to batch_path(params[:batch_id]), notice: "Student removed."
+  end
+
   private
   def student_params
     params.require(:student).permit(:first_name,:last_name,:picture)
