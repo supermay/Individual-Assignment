@@ -8,8 +8,11 @@ class BatchesController < ApplicationController
 
   def create
     @batch = current_user.batches.build(batch_params)
-    @batch.save
-    redirect_to root_path, notice: "New batch created!"
+    if @batch.save
+      redirect_to root_path, notice: "New batch created!"
+    else
+      redirect_to root_path, notice: "You need to fill in all information!"
+    end 
   end
 
   private
