@@ -10,6 +10,20 @@ class StudentsController < ApplicationController
     end
   end
 
+  def edit
+    @batch = Batch.find(params[:batch_id])
+    @student = Student.find(params[:id])
+  end
+
+  def update
+    @student = Student.find(params[:id])
+    if @student.update(student_params)
+      redirect_to batch_path(params[:batch_id]), notice: "Student updated"
+    else
+      redirect_to batch_path(params[:batch_id]), notice: "Student not updated"
+    end
+  end
+
   def destroy
     @student = Student.find(params[:id])
     @student.destroy

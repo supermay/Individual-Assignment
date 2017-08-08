@@ -1,6 +1,7 @@
 <% @students.each do |student| %>
   <h3>
     Student Name: <%= student.first_name %><%= student.last_name  %>
+    <%= link_to "[Edit]", edit_batch_student_path(@batch.id,student.id) %>
     <%= link_to "[Delete]", batch_student_path(@batch.id,student.id), method: :delete, data: { confirm: "Are you sure?" } %>
   <h3>
     <!-- <%= image_tag student.picture %> -->
