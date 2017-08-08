@@ -2,3 +2,9 @@
 <h3>Batch Number: <%= @batch.number %><h3>
 <h3>Start Date: <%= @batch.start %></h3>
 <h3>End Date: <%= @batch.end %></h3>
+<hr>
+<h1>Students Information</h1>
+<%= render 'students/show' %>
+<hr>
+<h3>Add a student?</h3>
+<%= render 'students/form' %>
