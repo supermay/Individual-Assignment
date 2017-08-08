@@ -1,4 +1,10 @@
 <h1>Batch Show Page<h1>
 <% @batches.each do |batch| %>
-<%= batch.user_id %>
+  <h3>Batch Number: <%= batch.number %><h3>
+  <h3>Start Date: <%= batch.start %></h3>
+  <h3>End Date: <%= batch.end %></h3>
+  <hr>
 <% end %>
+
+<h3>Create a new batch?</h3>
+<%= render 'form' %>
