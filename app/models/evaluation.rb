@@ -21,18 +21,21 @@ class Evaluation < ApplicationRecord
       return []
     else
       latest_time = evaluations.sort{ |a,b| b.time - a.time }.first.time
-      # get all the possible results of that time in the batch
       latest_results = evaluations.select{ |evaluation| latest_time == evaluation.time }
-      # see the colors
-      # colors = []
-      # for each in latest_results
-      #   colors << each.color
-      # end
     end
-    # colors
   end
 
   def self.order_by_time
     order(time: :desc)
   end
+  # 
+  # def self.random_student(students_ids)
+  #   results = Evaluation.all.get_latest_results_for_batch(students_ids)
+  #   # get array of different evaluations of the latest day
+  #   green_evaluations = results.select { |evaluation| 'GREEN' == evaluation.color }
+  #   yello_evaluations = results.select { |evaluation| 'YELLOW' == evaluation.color }
+  #   red_evaluations = results.select { |evaluation| 'RED' == evaluation.color }
+  #   return green_evaluations, yello_evaluations, red_evaluations
+  # end
+
 end
