@@ -55,6 +55,8 @@ class BatchesController < ApplicationController
         for each in @red_students_ids
           @students += @all_students_of_this_batch.select{ |student| each == student.id }
         end
+      else
+        @students = @all_students_of_this_batch
       end
     else
       @students = @all_students_of_this_batch
