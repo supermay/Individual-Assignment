@@ -15,6 +15,7 @@ class StudentsController < ApplicationController
     @students = @batch.students
     @student = Student.find(params[:id])
     @evaluation = Evaluation.new
+    @edit_evaluations = @student.evaluations.order_by_time
   end
 
   def edit

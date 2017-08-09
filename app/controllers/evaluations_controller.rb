@@ -22,6 +22,18 @@ class EvaluationsController < ApplicationController
     end
   end
 
+  def update
+    @batch = Batch.find(params[:batch_id])
+    @student = Student.find(params[:student_id])
+    @evaluation = Evaluation.find(params[:id])
+    if @evaluation.update(evaluation_params)
+      redirect_to batch_student_path(params[:batch_id],params[:student_id]), notice: "Evaluation updated"
+    else
+      redirect_to batch_student_path(params[:batch_id],params[:student_id]), notice: "Evaluation not updated"
+    end
+  end
+
+
   private
   def evaluation_params
     params.require(:evaluation).permit(:time,:color,:remark)

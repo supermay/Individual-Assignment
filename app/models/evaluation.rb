@@ -31,4 +31,8 @@ class Evaluation < ApplicationRecord
     end
     # colors
   end
+
+  def self.order_by_time
+    order(time: :desc)
+  end
 end
