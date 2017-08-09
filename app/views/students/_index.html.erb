@@ -1,5 +1,22 @@
 <!-- use map to see the color -->
 <h4><%= @latest_results.map{ |result| result.color} %></h4>
+
+<!-- <div class="progress">
+  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+    <span class="sr-only">40% Complete (success)</span>
+  </div>
+</div>
+<div class="progress">
+  <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+    <span class="sr-only">60% Complete (warning)</span>
+  </div>
+</div>
+<div class="progress">
+  <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+    <span class="sr-only">80% Complete (danger)</span>
+  </div>
+</div> -->
+
 <!-- Dropdown filter  -->
 <div class="dropdown">
   <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -16,16 +33,26 @@
 
 <% if @students != nil %>
   <% @students.each do |student| %>
-    <h3>
-      <%= link_to student.first_name + ' ' +student.last_name, batch_student_path(student.batch_id,student.id) %>
-      <%= link_to "Edit", edit_batch_student_path(@batch.id,student.id), class: "btn btn-primary" %>
-      <%= link_to "Delete", batch_student_path(@batch.id,student.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
-    </h3>
-    <% if student.evaluations.get_latest_result(student.id) != [] %>
-      <%= student.evaluations.get_latest_result(student.id).color %>
-    <% else %>
-      <h4>No Evaluation At All, You stupid asshole!!!</h4>
-    <% end %>
+    <div class="row">
+      <div class="col-sm-4 col-md-4">
+        <div class="thumbnail">
+          <%= image_tag student.picture %>
+          <div class="caption">
+            <h3><%= link_to student.first_name + ' ' +student.last_name, batch_student_path(student.batch_id,student.id) %></h3>
+            <p>
+              <% if student.evaluations.get_latest_result(student.id) != [] %>
+              <%= student.evaluations.get_latest_result(student.id).color %>
+              <% else %>
+              <h4>No Evaluation At All, You stupid asshole!!!</h4>
+              <% end %>
+            </p>
+            <p><%= link_to "Edit", edit_batch_student_path(@batch.id,student.id), class: "btn btn-primary" %>
+              <%= link_to "Delete", batch_student_path(@batch.id,student.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   <% end %>
 <% else %>
   <h3>There is no student having this color of evaluation.</h3>
