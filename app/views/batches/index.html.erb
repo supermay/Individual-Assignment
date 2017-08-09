@@ -1,3 +1,7 @@
+  <%= form_tag(batches_path, method: :get) do %>
+    <%= text_field_tag :number, params[:number] %>
+    <%= submit_tag 'Search', name: nil %>
+  <% end %>
 <h1>Batch Index Page<h1>
 <% @batches.each do |batch| %>
   <h3>Batch #<%= link_to batch.number, batch_path(batch.id) %><h3>

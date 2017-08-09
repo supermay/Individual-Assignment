@@ -3,6 +3,7 @@ class BatchesController < ApplicationController
 
   def index
     @batches = current_user.batches
+    @batches = @batches.search(params[:number])
     @batch = Batch.new
   end
 
