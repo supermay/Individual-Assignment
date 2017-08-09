@@ -8,12 +8,14 @@ class BatchesController < ApplicationController
 
   def show
     @batch = Batch.find(params[:id])
-    @students = @batch.students
+    @all_students_of_this_batch = @batch.students
+    # *******************************************************
     # get this idea from rails console
-    @students_ids = @students.ids
+    @students_ids = @all_students_of_this_batch.ids
     # removed @evaluations = Evaluation.all
     @latest_results = Evaluation.all.get_latest_results_for_batch(@students_ids)
     # get the separate array of latest evaluations with different colors
+    # *******************************************************
     @green_evaluations = @latest_results.select{ |evaluation| 'GREEN' == evaluation.color }
     @yellow_evaluations = @latest_results.select{ |evaluation| 'YELLOW' == evaluation.color }
     @red_evaluations = @latest_results.select{ |evaluation| 'RED' == evaluation.color }
@@ -31,6 +33,31 @@ class BatchesController < ApplicationController
     # get the random student
     @random_student_id = @selection_array.sample.sample.student_id
     @random_student = Student.find(@random_student_id)
+    # filter
+    # *******************************************************
+    if params[:color].present?
+      if params[:color] == "GREEN"
+        @green_students_ids = @green_evaluations.map { |evaluation| evaluation.student_id }
+        @students = []
+        for each in @green_students_ids
+          @students += @all_students_of_this_batch.select{ |student| each == student.id }
+        end
+      elsif params[:color] == "YELLOW"
+        @yellow_students_ids = @yellow_evaluations.map { |evaluation| evaluation.student_id }
+        @students = []
+        for each in @yellow_students_ids
+          @students += @all_students_of_this_batch.select{ |student| each == student.id }
+        end
+      elsif params[:color] == "RED"
+        @red_students_ids = @red_evaluations.map { |evaluation| evaluation.student_id }
+        @students = []
+        for each in @red_students_ids
+          @students += @all_students_of_this_batch.select{ |student| each == student.id }
+        end
+      end
+    else
+      @students = @all_students_of_this_batch
+    end
   end
 
   def create
