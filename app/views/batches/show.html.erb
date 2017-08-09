@@ -2,9 +2,11 @@
 <%= render 'students/index' %>
 <hr>
 <h3>Ask someone a question?</h3>
-<button type="button" name="button">Button</button>
-<%= @random_student.first_name + ' ' + @random_student.last_name %>
-<%= image_tag @random_student.picture %>
+<%= link_to "GENERATE", '?question=ASK' , class: "btn btn-primary" %>
+  <% if @random_student != nil %>
+    <%= @random_student.first_name + ' ' + @random_student.last_name %>
+    <%= image_tag @random_student.picture %>
+  <% end  %>
 <hr>
 <h3>Add a student?</h3>
 <%= render 'students/form' %>

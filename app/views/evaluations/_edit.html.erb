@@ -1,4 +1,18 @@
 <h3>Edit the evaluation</h3>
+
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Select a day
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><%= link_to 'ALL', '?date=ALL' %></li>
+    <% @dropdown_evaluations.each do |edit_evaluation| %>
+    <li><%= link_to edit_evaluation.time, '?date=' + edit_evaluation.time.to_s %></li>
+    <% end %>
+  </ul>
+</div>
+<!-- "?color=GREEN" -->
 <% @edit_evaluations.each do |evaluation| %>
   <%= form_for [@batch, @student, evaluation] do |f| %>
     <div class="form-group">

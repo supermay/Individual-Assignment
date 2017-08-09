@@ -12,4 +12,8 @@
 
 <%= render 'evaluations/form' %>
 
+<% if flash[:alert] %>
+<div class="alert"><%= flash[:alert] %></div>
+<% end %>
+
 <%= render 'evaluations/edit' %>

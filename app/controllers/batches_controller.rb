@@ -32,8 +32,19 @@ class BatchesController < ApplicationController
     @selection_array << @red_evaluations
     @selection_array << @red_evaluations
     # get the random student
-    @random_student_id = @selection_array.sample.sample.student_id
-    @random_student = Student.find(@random_student_id)
+    @random_selected_array = @selection_array.sample
+    if @random_selected_array != []
+      @random_student_id = @random_selected_array.sample.student_id
+      @random_student = Student.find(@random_student_id)
+    else
+      @random_student = nil
+    end
+    # filter
+    # *******************************************************
+    if params[:question] != 'ASK'
+      @random_student = nil
+    end
+
     # filter
     # *******************************************************
     if params[:color].present?
