@@ -31,9 +31,9 @@
   </ul>
 </div>
 
-<% if @students != nil %>
-  <% @students.each do |student| %>
-    <div class="row">
+<div class="row">
+  <% if @students != nil %>
+    <% @students.each do |student| %>
       <div class="col-sm-4 col-md-4">
         <div class="thumbnail">
           <%= image_tag student.picture %>
@@ -52,8 +52,8 @@
           </div>
         </div>
       </div>
-    </div>
+    <% end %>
+  <% else %>
+    <h3>There is no student having this color of evaluation.</h3>
   <% end %>
-<% else %>
-  <h3>There is no student having this color of evaluation.</h3>
-<% end %>
+</div>
