@@ -1,4 +1,15 @@
 <h3>Evaluation?</h3>
+<div  class="col-sm-3 col-md-3">
+  <div class="thumbnail">
+    <%= image_tag @student.picture %>
+  </div>
+</div>
+<h3><b><%= @student.first_name %></b></h3>
+<h4>Batch #<%= @student.batch_id %></h4>
+<% @student.evaluations.order(:time).each do |evaluation| %>
+  <%= evaluation.color %>
+<% end %>
+
 <%= render 'evaluations/form' %>
 
 <%= render 'evaluations/edit' %>
