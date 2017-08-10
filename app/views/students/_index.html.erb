@@ -1,8 +1,7 @@
 <!-- use map to see the color -->
-<h4>
-  Latest Evaluation Day: <%= @latest_results.first.time %>
-  <% @color_array = @latest_results.map{ |result| result.color} %>
-</h4>
+  <h4>
+    <% @color_array = @latest_results.map{ |result| result.color} %>
+  </h4>
 
 <% number_of_green = @color_array.select{ |color| color == "GREEN" }.length %>
 <% number_of_yellow = @color_array.select{ |color| color == "YELLOW" }.length %>

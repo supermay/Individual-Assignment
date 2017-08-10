@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Batch Index Page', js: true do
-  scenario 'create a new batch' do
+  scenario 'create a batch' do
     user = FactoryGirl.create(:user)
     login_as(user, :scope => :user)
     batch = FactoryGirl.create(:batch,user: user)
@@ -23,6 +23,10 @@ feature 'Batch Index Page', js: true do
     sleep 2
     expect(page).to have_content('Batch # 23')
     expect(page).not_to have_content('Batch # 100')
+    sleep 2
+
+    click_on 'Batch # 23'
+    sleep 2
 
   end
 

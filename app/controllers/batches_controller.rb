@@ -2,7 +2,7 @@ class BatchesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @batches = current_user.batches
+    @batches = Batch.all
     @batches = @batches.search(params[:number])
     @batch = Batch.new
   end
