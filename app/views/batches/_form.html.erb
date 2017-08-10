@@ -1,5 +1,5 @@
 <%= form_for @batch do |f| %>
-
+<div class="form-inline">
   <div class="form-group">
     <label>Number</label>
     <%= f.text_field :number, placeholder: "Number" , class: "form-control" %>
@@ -15,7 +15,8 @@
     <%= f.date_field :end_at, class: "form-control" %>
   </div>
 
-  <div class="actions">
+  <div class="form-group">
     <%= f.submit "Save", class: "btn btn-primary" %>
   </div>
-<% end %>
+  <% end %>
+</div>
