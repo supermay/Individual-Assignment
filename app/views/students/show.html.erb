@@ -1,3 +1,30 @@
+<style media="screen">
+.foo {
+float: left;
+width: 40px;
+height: 40px;
+margin: 1px;
+/*border: 1px solid rgba(0, 0, 0, .2);*/
+}
+
+.green {
+  background: #00cc00;
+}
+
+.yellow {
+background: #ffd633;
+}
+
+.red {
+background: #ff0000;
+}
+</style>
+<!--
+<div class="foo green"></div>
+<div class="foo yellow"></div>
+<div class="foo red"></div> -->
+
+
 <h3>Evaluation?</h3>
 <div  class="col-sm-3 col-md-3">
   <div class="thumbnail">
@@ -7,7 +34,13 @@
 <h3><b><%= @student.first_name %></b></h3>
 <h4>Batch #<%= @student.batch_id %></h4>
 <% @student.evaluations.order(:time).each do |evaluation| %>
-  <%= evaluation.color %>
+  <% if evaluation.color == "GREEN" %>
+    <div class="foo green"></div>
+  <% elsif evaluation.color == "YELLOW" %>
+    <div class="foo yellow"></div>
+  <% else %>
+    <div class="foo red"></div>
+  <% end %>
 <% end %>
 
 <%= render 'evaluations/form' %>
