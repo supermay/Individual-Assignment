@@ -85,7 +85,7 @@ class BatchesController < ApplicationController
 
   private
   def batch_params
-    params.require(:batch).permit(:number,:start,:end)
+    params.require(:batch).permit(:number,:start_at,:end_at)
   end
 
 end
