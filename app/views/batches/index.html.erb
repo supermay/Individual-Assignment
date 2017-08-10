@@ -1,7 +1,7 @@
 <div class="text-left">
   <h4>
     <%= form_tag(batches_path, method: :get) do %>
-    <%= text_field_tag :number, params[:number], placeholder: "Fill the nubmer of the batch" %>
+    <%= text_field_tag :number, params[:number], placeholder: "Fill the number of the batch" %>
     <%= submit_tag 'Search', name: nil %>
     <% end %>
   </h4>
