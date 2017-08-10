@@ -1,6 +1,6 @@
 <!-- use map to see the color -->
 <h4>
-  Latest Batch Date: <%= @latest_results.first.time %>
+  Latest Evaluation Day: <%= @latest_results.first.time %>
   <% @color_array = @latest_results.map{ |result| result.color} %>
 </h4>
 
