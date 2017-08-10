@@ -1,12 +1,20 @@
 <h1>Batch <%= @batch.number%> Information<h1>
-<%= render 'students/index' %>
 <hr>
 <h3>Ask someone a question?</h3>
 <%= link_to "GENERATE", '?question=ASK' , class: "btn btn-primary" %>
   <% if @random_student != nil %>
-    <%= @random_student.first_name + ' ' + @random_student.last_name %>
-    <%= image_tag @random_student.picture %>
+    <div class="row">
+      <div class="col-xs-6 col-md-3 text-center">
+        <div class="thumbnail">
+          <h4><b><%= link_to @random_student.first_name + ' ' + @random_student.last_name, batch_student_path(@random_student.batch_id,@random_student.id) %></b></h4>
+          <%= link_to image_tag(@random_student.picture), batch_student_path(@random_student.batch_id,@random_student.id) %>
+        </div>
+      </div>
+    </div>
   <% end  %>
+
+<h3>Students Information</h3>
+<%= render 'students/index' %>
 <hr>
 <h3>Add a student?</h3>
 <%= render 'students/form' %>
