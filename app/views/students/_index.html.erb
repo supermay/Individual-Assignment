@@ -1,5 +1,10 @@
 <!-- use map to see the color -->
   <h4>
+    <% if @latest_results == nil %>
+      Latest day of evaluation for this batch:<%=  @latest_results.first.time %>
+    <% else %>
+      There is no evaluation yet.
+    <% end %>
     <% @color_array = @latest_results.map{ |result| result.color} %>
   </h4>
 

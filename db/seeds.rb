@@ -14,6 +14,7 @@ student3 = Student.create!({first_name:"Fan",last_name:"Ta",picture:"http://vign
 student5 = Student.create!({first_name:"Alp",last_name:"Ro",picture:"https://static.scoupy.nl/alpro/images/cornerLogo.png", batch: batch1})
 student4 = Student.create!({first_name:"Star",last_name:"Bucks",picture:"http://www.pngmart.com/files/3/Starbucks-Logo-PNG-File.png", batch: batch1})
 student6 = Student.create!({first_name:"Oo",last_name:"Long",picture:"http://oolongteauk.co.uk/images/logo.png", batch: batch1})
+student7 = Student.create!({first_name:"Douwe",last_name:"Egberts",picture:"http://www.peppermintmedia.nl/wp-content/uploads/2015/02/Douwe-Egberts_logo_video.png", batch: batch2})
 
 evaluation = Evaluation.create!({time:"10/08/2017", color: "GREEN", remark: "", student: student1})
 evaluation = Evaluation.create!({time:"09/08/2017", color: "YELLOW", remark: "lazy", student: student1})

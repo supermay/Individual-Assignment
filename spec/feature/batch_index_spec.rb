@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-sleep_seconds = 2
+sleep_seconds = 0.5
 
 feature 'Batch Index Page', js: true do
   scenario 'create a batch' do
