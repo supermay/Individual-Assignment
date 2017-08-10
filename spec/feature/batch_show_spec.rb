@@ -29,7 +29,7 @@ feature 'Batch Show Page', js: true do
     expect(page).not_to have_content('1 students')
   end
 
-  scenario 'edit a student to the batch' do
+  scenario 'edit a student of the batch' do
     user = FactoryGirl.create(:user)
     login_as(user, :scope => :user)
     visit batch_path(2)
@@ -52,7 +52,7 @@ feature 'Batch Show Page', js: true do
     expect(page).not_to have_xpath("//img[@src='http://www.peppermintmedia.nl/wp-content/uploads/2015/02/Douwe-Egberts_logo_video.png']")
   end
 
-  scenario 'delete a student to the batch' do
+  scenario 'delete a student from the batch' do
     user = FactoryGirl.create(:user)
     login_as(user, :scope => :user)
     visit batch_path(2)
@@ -66,5 +66,58 @@ feature 'Batch Show Page', js: true do
     expect(page).not_to have_content('Douwe Egberts')
     expect(page).not_to have_xpath("//img[@src='http://www.peppermintmedia.nl/wp-content/uploads/2015/02/Douwe-Egberts_logo_video.png']")
   end
+
+  scenario 'filter student with latest evaluation "GREEN"' do
+    user = FactoryGirl.create(:user)
+    login_as(user, :scope => :user)
+    visit batch_path(1)
+    sleep sleep_seconds
+    find("#dropdownMenu1").click
+    sleep sleep_seconds
+    click_on "GREEN"
+    sleep sleep_seconds
+
+    expect(page).to have_content('Coca Cola')
+    expect(page).to have_content('Alp Ro')
+    expect(page).not_to have_content('Heine Ken')
+    expect(page).not_to have_content('Fan Ta')
+    expect(page).not_to have_content('Star Bucks')
+    expect(page).not_to have_content('Oo Long')
+  end
+
+  scenario 'filter student with latest evaluation "YELLOW"' do
+    user = FactoryGirl.create(:user)
+    login_as(user, :scope => :user)
+    visit batch_path(1)
+    sleep sleep_seconds
+    find("#dropdownMenu1").click
+    sleep sleep_seconds
+    click_on "YELLOW"
+    sleep sleep_seconds
+    expect(page).to have_content('Heine Ken')
+    expect(page).to have_content('Star Bucks')
+    expect(page).not_to have_content('Fan Ta')
+    expect(page).not_to have_content('Oo Long')
+    expect(page).not_to have_content('Coca Cola')
+    expect(page).not_to have_content('Alp Ro')
+  end
+
+  scenario 'filter student with latest evaluation "RED"' do
+    user = FactoryGirl.create(:user)
+    login_as(user, :scope => :user)
+    visit batch_path(1)
+    sleep sleep_seconds
+    find("#dropdownMenu1").click
+    sleep sleep_seconds
+    click_on "RED"
+    sleep sleep_seconds
+    expect(page).to have_content('Fan Ta')
+    expect(page).not_to have_content('Heine Ken')
+    expect(page).not_to have_content('Star Bucks')
+    expect(page).not_to have_content('Oo Long')
+    expect(page).not_to have_content('Coca Cola')
+    expect(page).not_to have_content('Alp Ro')
+  end
+
 
 end

@@ -1,6 +1,6 @@
 <!-- use map to see the color -->
   <h4>
-    <% if @latest_results == nil %>
+    <% if @latest_results.first != nil %>
       Latest day of evaluation for this batch:<%=  @latest_results.first.time %>
     <% else %>
       There is no evaluation yet.
