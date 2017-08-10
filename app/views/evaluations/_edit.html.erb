@@ -1,40 +1,66 @@
-<h3>Edit the evaluation</h3>
-
-<div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    Select a day
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <li><%= link_to 'ALL', '?date=ALL' %></li>
-    <% @dropdown_evaluations.each do |edit_evaluation| %>
-    <li><%= link_to edit_evaluation.time, '?date=' + edit_evaluation.time.to_s %></li>
-    <% end %>
-  </ul>
+<div class="form-inline">
+  <div class="form-group">
+    <h3>
+      Edit the evaluation
+    </h3>
+  </div>
+  <div class="form-group">
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Select a day
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li><%= link_to 'ALL', '?date=ALL' %></li>
+        <% @dropdown_evaluations.each do |edit_evaluation| %>
+        <li><%= link_to edit_evaluation.time, '?date=' + edit_evaluation.time.to_s %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>
+
+
+
 <!-- "?color=GREEN" -->
+<!-- <div class="row">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img src="..." alt="...">
+      <div class="caption">
+        <h3>Thumbnail label</h3>
+        <p>...</p>
+        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="panel-heading">
 <% @edit_evaluations.each do |evaluation| %>
+<div class="form-inline">
   <%= form_for [@batch, @student, evaluation] do |f| %>
-    <div class="form-group">
-      <label>Time</label>
-      <%= f.date_field :time, class: "form-control" %>
-    </div>
+  <div class="form-group">
+    <label>Date</label>
+    <%= f.date_field :time, class: "form-control" %>
+  </div>
 
-    <div class="form-group">
-      <label>Color</label>
-      <%= f.select :color, [["GREEN", "GREEN"], ["YELLO", "YELLOW"], ["RED", "RED"]], prompt: "Color", class: "form-control" %>
-    </div>
+  <div class="form-group">
+    <label>Color</label>
+    <%= f.select :color, [["GREEN", "GREEN"], ["YELLO", "YELLOW"], ["RED", "RED"]], prompt: "Color", class: "form-control" %>
+  </div>
 
-    <div class="form-group">
-      <label>Remark</label>
-      <%= f.text_field :remark, placeholder: "Remark", class: "form-control" %>
-    </div>
+  <div class="form-group">
+    <label>Remark</label>
+    <%= f.text_field :remark, placeholder: "Remark", class: "form-control" %>
+  </div>
 
-    <div class="actions">
-      <%= f.submit "Save", class: "btn btn-primary" %>
-    </div>
+  <div class="form-group">
+    <%= f.submit "Save", class: "btn btn-primary" %>
+  </div>
 
   <% end %>
+</div>
   <hr>
 
 <% end %>
+</div>

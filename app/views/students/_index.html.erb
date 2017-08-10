@@ -54,7 +54,7 @@
               <%= student.evaluations.get_latest_result(student.id).time %>
               <%= student.evaluations.get_latest_result(student.id).color %>
               <% else %>
-              <h4>No Evaluation At All, You stupid asshole!!!</h4>
+              <p>No evaluation yet, you can add one now!!!</p>
               <% end %>
             </p>
             <p><%= link_to "Edit", edit_batch_student_path(@batch.id,student.id), class: "btn btn-primary" %>

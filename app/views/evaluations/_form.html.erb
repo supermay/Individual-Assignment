@@ -1,22 +1,26 @@
-<%= form_for [@batch, @student, @evaluation] do |f| %>
-  <div class="form-group">
-    <label>Time</label>
-    <%= f.date_field :time, value:(Date.today.to_s(:db)), class: "form-control" %>
-  </div>
+  <div class="panel-heading">
+  <div class="form-inline">
+    <%= form_for [@batch, @student, @evaluation] do |f| %>
+    <div class="form-group">
+      <label>Date</label>
+      <%= f.date_field :time, class: "form-control" %>
+    </div>
 
-  <div class="form-group">
-    <label>Color</label>
-    <%= f.select :color, [["GREEN", "GREEN"], ["YELLO", "YELLOW"], ["RED", "RED"]], prompt: "Color", class: "form-control" %>
-  </div>
+    <div class="form-group">
+      <label>Color</label>
+      <%= f.select :color, [["GREEN", "GREEN"], ["YELLO", "YELLOW"], ["RED", "RED"]], prompt: "Color", class: "form-control" %>
+    </div>
 
-  <div class="form-group">
-    <label>Remark</label>
-    <%= f.text_field :remark, placeholder: "Remark", class: "form-control" %>
-  </div>
+    <div class="form-group">
+      <label>Remark</label>
+      <%= f.text_field :remark, placeholder: "Remark", class: "form-control" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Save", class: "btn btn-primary" %>
-    <%= f.submit "Save and Next", class: "btn btn-primary" %>
-  </div>
+    <div class="form-group">
+      <%= f.submit "Save", class: "btn btn-primary" %>
+      <%= f.submit "Save and Next", class: "btn btn-primary" %>      
+    </div>
 
-<% end %>
+    <% end %>
+  </div>
+</div>
