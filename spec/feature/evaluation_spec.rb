@@ -44,4 +44,30 @@ feature 'Evaluation', js: true do
     sleep sleep_seconds
   end
 
+  scenario 'save and next' do
+    user = FactoryGirl.create(:user)
+    login_as(user, :scope => :user)
+    student1 = FactoryGirl.create(:student)
+    student2 = Student.create!(first_name:"Dan", last_name:"Non",picture:"https://www.paxata.com/wp-content/uploads/dannon_transparent.png", batch_id: 2)
+    visit batch_student_path(2,7)
+    sleep sleep_seconds
+
+    page.find_by_id('evaluation_color').find("option[value='GREEN']").select_option
+    click_on 'Save and Next'
+    sleep sleep_seconds
+    expect(page.current_path).to eq batch_student_path(2,9)
+    sleep sleep_seconds
+
+    page.find_by_id('evaluation_color').find("option[value='YELLOW']").select_option
+    click_on 'Save and Next'
+    sleep sleep_seconds
+    expect(page.current_path).to eq batch_student_path(2,8)
+
+    page.find_by_id('evaluation_color').find("option[value='RED']").select_option
+    click_on 'Save and Next'
+    sleep sleep_seconds
+    expect(page.current_path).to eq batch_student_path(2,7)
+
+  end
+
 end
