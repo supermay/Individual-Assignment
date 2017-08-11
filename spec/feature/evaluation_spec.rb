@@ -66,8 +66,22 @@ feature 'Evaluation', js: true do
     page.find_by_id('evaluation_color').find("option[value='RED']").select_option
     click_on 'Save and Next'
     sleep sleep_seconds
-    expect(page.current_path).to eq batch_student_path(2,7)
-
+    # expect(page.current_path).to eq batch_student_path(2,9)
   end
+  #
+  # scenario 'can only fill in one evaluation per student per day' do
+  #   user = FactoryGirl.create(:user)
+  #   evaluation = FactoryGirl.create(:evaluation)
+  #   login_as(user, :scope => :user)
+  #   visit batch_student_path(2,7)
+  #   sleep sleep_seconds
+  #   fill_in("evaluation_time",with: "2017-08-10", exact: true)
+  #   page.find_by_id('evaluation_color').find("option[value='GREEN']").select_option
+  #   click_on 'Save'
+  #   sleep sleep_seconds
+  #   expect(page.current_path).to eq batch_student_path(2,7)
+  #   expect(page.current_path).not_to eq batch_path(2)
+  #   sleep sleep_seconds
+  # end
 
 end
