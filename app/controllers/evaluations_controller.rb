@@ -11,7 +11,7 @@ class EvaluationsController < ApplicationController
           redirect_to batch_path(params[:batch_id]), notice: "Evaluation added."
         else
           @batch = Batch.find(params[:batch_id])
-          @students = @batch.students
+          @students = @batch.students.order(:id)
           @student = Student.find(params[:student_id])
           @index_of_student = @students.index(@student)
           if @index_of_student == @students.length - 1

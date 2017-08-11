@@ -55,18 +55,18 @@ feature 'Evaluation', js: true do
     page.find_by_id('evaluation_color').find("option[value='GREEN']").select_option
     click_on 'Save and Next'
     sleep sleep_seconds
-    expect(page.current_path).to eq batch_student_path(2,9)
+    expect(page.current_path).to eq batch_student_path(2,8)
     sleep sleep_seconds
 
     page.find_by_id('evaluation_color').find("option[value='YELLOW']").select_option
     click_on 'Save and Next'
     sleep sleep_seconds
-    expect(page.current_path).to eq batch_student_path(2,8)
+    expect(page.current_path).to eq batch_student_path(2,9)
 
     page.find_by_id('evaluation_color').find("option[value='RED']").select_option
     click_on 'Save and Next'
     sleep sleep_seconds
-    # expect(page.current_path).to eq batch_student_path(2,9)
+    expect(page.current_path).to eq batch_student_path(2,7)
   end
   #
   # scenario 'can only fill in one evaluation per student per day' do
