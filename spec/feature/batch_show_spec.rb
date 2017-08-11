@@ -33,9 +33,9 @@ feature 'Batch Show Page', js: true do
     user = FactoryGirl.create(:user)
     login_as(user, :scope => :user)
     visit batch_path(2)
-    sleep sleep_seconds
     click_on 'Edit'
     expect(page.current_path).to eq edit_batch_student_path(2,7)
+    sleep sleep_seconds
     sleep sleep_seconds
     fill_in 'student_first_name', with: 'Nest'
     sleep sleep_seconds
@@ -127,12 +127,6 @@ feature 'Batch Show Page', js: true do
     visit batch_path(2)
     sleep sleep_seconds
 
-    click_on "Douwe Egberts"
-    page.find_by_id('evaluation_color').find("option[value='GREEN']").select_option
-    sleep sleep_seconds
-    click_on 'Save'
-    sleep sleep_seconds
-
     click_on "Tropi Cana"
     page.find_by_id('evaluation_color').find("option[value='YELLOW']").select_option
     sleep sleep_seconds
@@ -145,6 +139,38 @@ feature 'Batch Show Page', js: true do
     sleep sleep_seconds
     click_on 'Save'
     sleep sleep_seconds
+
+    click_on "Douwe Egberts"
+    page.find_by_id('evaluation_color').find("option[value='GREEN']").select_option
+    sleep sleep_seconds
+    click_on 'Save'
+    sleep sleep_seconds
   end
+
+  scenario 'random generate a student' do
+    user = FactoryGirl.create(:user)
+    login_as(user, :scope => :user)
+    visit batch_path(1)
+    sleep sleep_seconds
+    click_on 'GENERATE'
+    sleep sleep_seconds
+    click_on 'GENERATE'
+    sleep sleep_seconds
+    click_on 'GENERATE'
+    sleep sleep_seconds
+    click_on 'GENERATE'
+    sleep sleep_seconds
+    click_on 'GENERATE'
+    sleep sleep_seconds
+    click_on 'GENERATE'
+    sleep sleep_seconds
+    click_on 'GENERATE'
+    sleep sleep_seconds
+    click_on 'GENERATE'
+    sleep sleep_seconds
+  end
+
+
+
 
 end
