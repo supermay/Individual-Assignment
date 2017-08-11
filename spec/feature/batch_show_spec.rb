@@ -119,5 +119,32 @@ feature 'Batch Show Page', js: true do
     expect(page).not_to have_content('Alp Ro')
   end
 
+  scenario 'percentage bar changes' do
+    user = FactoryGirl.create(:user)
+    login_as(user, :scope => :user)
+    student1 = FactoryGirl.create(:student)
+    student2 = Student.create!(first_name:"Dan", last_name:"Non",picture:"https://www.paxata.com/wp-content/uploads/dannon_transparent.png", batch_id: 2)
+    visit batch_path(2)
+    sleep sleep_seconds
+
+    click_on "Douwe Egberts"
+    page.find_by_id('evaluation_color').find("option[value='GREEN']").select_option
+    sleep sleep_seconds
+    click_on 'Save'
+    sleep sleep_seconds
+
+    click_on "Tropi Cana"
+    page.find_by_id('evaluation_color').find("option[value='YELLOW']").select_option
+    sleep sleep_seconds
+    click_on 'Save'
+    sleep sleep_seconds
+
+    click_on "Dan Non"
+    sleep sleep_seconds
+    page.find_by_id('evaluation_color').find("option[value='RED']").select_option
+    sleep sleep_seconds
+    click_on 'Save'
+    sleep sleep_seconds
+  end
 
 end
