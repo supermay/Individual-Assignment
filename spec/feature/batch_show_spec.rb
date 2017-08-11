@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-sleep_seconds = 0.5
+sleep_seconds = 2
 
 feature 'Batch Show Page', js: true do
   scenario 'add a student to the batch' do

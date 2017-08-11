@@ -1,5 +1,6 @@
 require 'rails_helper'
-sleep_seconds = 0.5
+
+sleep_seconds = 2
 
 feature 'Evaluation', js: true do
   scenario 'click name redirect to evaluation page' do
@@ -83,5 +84,15 @@ feature 'Evaluation', js: true do
   #   expect(page.current_path).not_to eq batch_path(2)
   #   sleep sleep_seconds
   # end
+  scenario 'select a day' do
+    user = FactoryGirl.create(:user)
+    login_as(user, :scope => :user)
+    visit batch_student_path(1,4)
+    sleep sleep_seconds
+    find("#dropdownMenu1").click
+    sleep sleep_seconds
+    click_on "2017-08-09"
+    sleep sleep_seconds
+  end
 
 end
