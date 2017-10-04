@@ -152,25 +152,9 @@ feature 'Batch Show Page', js: true do
     login_as(user, :scope => :user)
     visit batch_path(1)
     sleep sleep_seconds
-    click_on 'GENERATE'
-    sleep sleep_seconds
-    click_on 'GENERATE'
-    sleep sleep_seconds
-    click_on 'GENERATE'
-    sleep sleep_seconds
-    click_on 'GENERATE'
-    sleep sleep_seconds
-    click_on 'GENERATE'
-    sleep sleep_seconds
-    click_on 'GENERATE'
-    sleep sleep_seconds
-    click_on 'GENERATE'
-    sleep sleep_seconds
-    click_on 'GENERATE'
-    sleep sleep_seconds
+    for i in 1..5
+      click_on 'GENERATE'
+      sleep sleep_seconds
+    end
   end
-
-
-
-
 end
